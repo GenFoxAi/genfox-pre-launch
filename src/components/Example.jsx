@@ -30,6 +30,7 @@ const BlockInTextCard = ({ tag, text, examples }) => {
     phone: "",
   });
 
+  const [submissionStatus, setSubmissionStatus] = useState(null); 
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
@@ -40,11 +41,37 @@ const BlockInTextCard = ({ tag, text, examples }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowModal(true);
-    setFormData({ name: "", email: "", phone: "" });
-    setTimeout(() => setShowModal(false), 3000);
+    setSubmissionStatus("submitting");
+
+    const googleFormEndpoint =
+      "https://docs.google.com/forms/d/e/1FAIpQLSchDWwb9yMzjnWEg4Gi2zV9f-zeDbHW1yG7mu4ZOtbt-YyIWw/formResponse";
+
+    const body = new URLSearchParams();
+    body.append("entry.329512789", formData.name); 
+    body.append("entry.873409098", formData.email); 
+    body.append("entry.839801045", formData.phone); 
+
+    try {
+      await fetch(googleFormEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body,
+      });
+
+      setSubmissionStatus("success");
+      setShowModal(true);
+      setFormData({ name: "", email: "", phone: "" });
+
+      setTimeout(() => setShowModal(false), 3000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmissionStatus("failure");
+    }
   };
 
   return (
@@ -66,6 +93,7 @@ const BlockInTextCard = ({ tag, text, examples }) => {
           onChange={handleChange}
           placeholder="Name"
           className="w-full rounded-full border border-neutral-950 py-2 px-4 text-sm font-medium text-neutral-800 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950"
+          required
         />
         <input
           type="email"
@@ -74,6 +102,7 @@ const BlockInTextCard = ({ tag, text, examples }) => {
           onChange={handleChange}
           placeholder="Email"
           className="w-full rounded-full border border-neutral-950 py-2 px-4 text-sm font-medium text-neutral-800 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950"
+          required
         />
         <input
           type="tel"
@@ -82,16 +111,17 @@ const BlockInTextCard = ({ tag, text, examples }) => {
           onChange={handleChange}
           placeholder="Phone Number"
           className="w-full rounded-full border border-neutral-950 py-2 px-4 text-sm font-medium text-neutral-800 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-950"
+          required
         />
         <button
           type="submit"
           className="w-full rounded-full border border-neutral-950 py-2 text-sm font-medium transition-colors hover:bg-neutral-950 hover:text-neutral-100"
         >
-          Notify Me
+          {submissionStatus === "submitting" ? "Submitting..." : "Notify Me"}
         </button>
       </form>
       <AnimatePresence>
-        {showModal && (
+        {showModal && submissionStatus === "success" && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -116,17 +146,12 @@ const BlockInTextCard = ({ tag, text, examples }) => {
           </motion.div>
         )}
       </AnimatePresence>
+      {submissionStatus === "failure" && (
+        <p className="text-red-600">⚠️ Something went wrong. Please try again.</p>
+      )}
     </div>
   );
 };
-
-const LETTER_DELAY = 0.025;
-const BOX_FADE_DURATION = 0.125;
-
-const FADE_DELAY = 5;
-const MAIN_FADE_DURATION = 0.25;
-
-const SWAP_DELAY_IN_MS = 5500;
 
 const Typewrite = ({ examples }) => {
   const [exampleIndex, setExampleIndex] = useState(0);
@@ -134,7 +159,7 @@ const Typewrite = ({ examples }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setExampleIndex((pv) => (pv + 1) % examples.length);
-    }, SWAP_DELAY_IN_MS);
+    }, 5500);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -145,50 +170,8 @@ const Typewrite = ({ examples }) => {
       <span className="ml-3">
         EXAMPLE:{" "}
         {examples[exampleIndex].split("").map((l, i) => (
-          <motion.span
-            initial={{
-              opacity: 1,
-            }}
-            animate={{
-              opacity: 0,
-            }}
-            transition={{
-              delay: FADE_DELAY,
-              duration: MAIN_FADE_DURATION,
-              ease: "easeInOut",
-            }}
-            key={`${exampleIndex}-${i}`}
-            className="relative"
-          >
-            <motion.span
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              transition={{
-                delay: i * LETTER_DELAY,
-                duration: 0,
-              }}
-            >
-              {l}
-            </motion.span>
-            <motion.span
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                delay: i * LETTER_DELAY,
-                times: [0, 0.1, 1],
-                duration: BOX_FADE_DURATION,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-[3px] left-[1px] right-0 top-[3px] bg-neutral-950"
-            />
+          <motion.span key={`${exampleIndex}-${i}`} className="relative">
+            <motion.span>{l}</motion.span>
           </motion.span>
         ))}
       </span>
