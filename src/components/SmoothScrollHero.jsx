@@ -9,10 +9,10 @@ import { FiArrowRight, FiMapPin } from 'react-icons/fi';
 import { useRef } from 'react';
 import genfoxheroimage from '../assets/GenFox.png';
 import logo from '../assets/logogen.png';
-import whatsapp from '../assets/Frame 3.png'
-import call from '../assets/Frame 2.png'
-import skills from '../assets/Frame 4.png'
-import integration from '../assets/Frame 5.png'
+import whatsapp from '../assets/Frame 3.png';
+import call from '../assets/Frame 2.png';
+import skills from '../assets/Frame 4.png';
+import integration from '../assets/Frame 5 (1).png';
 import ShiftingCountdown from './ShiftingCountdown';
 
 export const SmoothScrollHero = () => {
@@ -21,10 +21,7 @@ export const SmoothScrollHero = () => {
       <ReactLenis
         root
         options={{
-          // Learn more -> https://github.com/darkroomengineering/lenis?tab=readme-ov-file#instance-settings
           lerp: 0.05,
-          //   infinite: true,
-          //   syncTouch: true,
         }}
       >
         <Nav />
@@ -37,15 +34,15 @@ export const SmoothScrollHero = () => {
 
 const Nav = () => {
   return (
-    <nav className='fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-3 text-white'>
-      <img src={logo} className='h-10' alt="logo" />
+    <nav className='fixed left-0 right-0 top-0 z-50 flex flex-wrap mx-auto items-center justify-between px-4 py-3 text-white sm:flex-nowrap sm:px-6'>
+      <img src={logo} className='h-8 sm:h-10' alt='logo' />
       <button
         onClick={() => {
           document.getElementById('launch-schedule')?.scrollIntoView({
             behavior: 'smooth',
           });
         }}
-        className='flex items-center gap-1 text-xs text-zinc-400'
+        className='flex items-center gap-1 text-xs text-zinc-400 sm:text-sm '
       >
         COMING SOON <FiArrowRight />
       </button>
@@ -62,10 +59,8 @@ const Hero = () => {
       className='relative w-full'
     >
       <CenterImage />
-
       <ParallaxImages />
-
-      <div className='absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-zinc-950/0 to-zinc-950' />
+      <div className='absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-zinc-950/0 to-zinc-950 sm:h-96' />
     </div>
   );
 };
@@ -112,28 +107,28 @@ const ParallaxImages = () => {
         alt='fox call'
         start={-200}
         end={200}
-        className='w-1/3 rounded-lg' 
+        className='w-1/2 sm:w-1/3 rounded-lg'
       />
       <ParallaxImg
         src={whatsapp}
         alt='Whatsapp chat bot'
         start={200}
         end={-250}
-        className='mx-auto w-2/3 rounded-lg'
+        className='mx-auto w-3/4 sm:w-2/3 rounded-lg'
       />
       <ParallaxImg
         src={skills}
         alt='skills and stuff'
         start={-200}
         end={200}
-        className='ml-auto w-1/3 rounded-lg'
+        className='ml-auto w-1/2 sm:w-1/3 rounded-lg'
       />
       <ParallaxImg
         src={integration}
         alt='integration apps'
         start={0}
         end={-500}
-        className='ml-24 w-5/12 rounded-lg'
+        className='ml-12 w-2/3 sm:ml-24 sm:w-5/12 rounded-lg'
       />
     </div>
   );
@@ -165,143 +160,114 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
 };
 
 const Schedule = () => {
-    return (
-      <section
-        id='launch-schedule'
-        className='mx-auto max-w-5xl px-4 py-48 text-white'
+  return (
+    <section
+      id='launch-schedule'
+      className='mx-auto max-w-7xl px-4 py-24 sm:px-2 sm:py-48 text-white'
+    >
+      <motion.h1
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ ease: 'easeOut', duration: 1.5 }}
+        className='mb-10 text-3xl sm:mb-20 sm:text-6xl font-black uppercase text-center bg-gradient-to-r from-black via-gray-500 to-black bg-clip-text text-transparent'
+      >
+        Coming Soon
+      </motion.h1>
+
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ ease: 'easeInOut', duration: 1.5 }}
+      >
+        <ShiftingCountdown />
+      </motion.div>
+      <motion.div
+        className='mt-10 sm:mt-20 space-y-4 sm:space-y-6 text-lg sm:text-xl leading-7 sm:leading-8 text-zinc-500 font-medium'
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.8 }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.5,
+            },
+          },
+        }}
       >
         <motion.h1
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ ease: 'easeOut', duration: 1.5 }} // Slower transition
-          className='mb-20 text-4xl font-black uppercase text-zinc-700'
+          transition={{ ease: 'easeOut', duration: 1.5 }}
+          className='mb-5 text-3xl sm:mb-10 sm:text-4xl font-black uppercase text-zinc-700'
         >
-          Coming Soon
+          MEET FOX
         </motion.h1>
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ ease: 'easeInOut', duration: 1.5 }} // Slower transition
+        <motion.p
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1 }}
         >
-          <ShiftingCountdown />
-        </motion.div>
-        <motion.div
-          className='mt-20  space-y-6 text-xl leading-8 text-zinc-400 font-mono'
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.8 }}
+          The AI assistant designed to redefine how you manage your life.
+          Powered by advanced multi-agent systems and supporting multi-modal
+          interaction, Fox isn’t just smart—it’s intuitive, adaptable, and built
+          to seamlessly integrate into your daily routine.
+        </motion.p>
+        <motion.ul
+          className='list-disc list-inside'
           variants={{
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
-              transition: {
-                staggerChildren: 0.5, // Slower stagger
-              },
+              transition: { staggerChildren: 0.5 },
             },
           }}
         >
-             <motion.h1
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ ease: 'easeOut', duration: 1.5 }} // Slower transition
-          className='mb-10 text-2xl font-black uppercase text-zinc-700'
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 1 }}
+          >
+            Tracks your finances, organizes your schedule, and syncs with your
+            fitness goals.
+          </motion.li>
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 1 }}
+          >
+            Works effortlessly through WhatsApp, turning complex tasks into
+            simple conversations.
+          </motion.li>
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 1 }}
+          >
+            Combines cutting-edge AI with a user-friendly interface, making
+            advanced technology accessible to everyone.
+          </motion.li>
+        </motion.ul>
+        <motion.p
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1 }}
         >
-          MEET FOX
-        </motion.h1>
-          <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 1 }} // Slower individual transition
-          >
-            The AI assistant designed to redefine how you manage your
-            life. Powered by advanced multi-agent systems and supporting
-            multi-modal interaction, Fox isn’t just smart—it’s intuitive,
-            adaptable, and built to seamlessly integrate into your daily routine.
-          </motion.p>
-          <motion.ul
-            className='list-disc list-inside'
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.5 } }, // Slower stagger
-            }}
-          >
-            <motion.li
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 1 }} // Slower individual transition
-            >
-              Tracks your finances, organizes your schedule, and syncs with your
-              fitness goals.
-            </motion.li>
-            <motion.li
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 1 }} // Slower individual transition
-            >
-              Works effortlessly through WhatsApp, turning complex tasks into
-              simple conversations.
-            </motion.li>
-            <motion.li
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 1 }} // Slower individual transition
-            >
-              Combines cutting-edge AI with a user-friendly interface, making
-              advanced technology accessible to everyone.
-            </motion.li>
-          </motion.ul>
-          <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 1 }} // Slower individual transition
-          >
-            We’re building a solution that’s as powerful as it is personal—your
-            ultimate interface to AI.
-          </motion.p>
-          <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 1.2 }} // Slightly slower for emphasis
-            className='mt-9'
-          >
-            This is just the beginning. Stay tuned for the next chapter—you won’t
-            want to miss it!
-          </motion.p>
-        </motion.div>
-      </section>
-    );
-  };
-
-  
-
-const ScheduleItem = ({ title, date, location }) => {
-  return (
-    <motion.div
-      initial={{ y: 48, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      transition={{ ease: 'easeInOut', duration: 0.75 }}
-      className='mb-9 flex items-center justify-between border-b border-zinc-800 px-3 pb-9'
-    >
-      <div>
-        <p className='mb-1.5 text-xl text-zinc-50'>{title}</p>
-        <p className='text-sm uppercase text-zinc-500'>{date}</p>
-      </div>
-      <div className='flex items-center gap-1.5 text-end text-sm uppercase text-zinc-500'>
-        <p>{location}</p>
-        <FiMapPin />
-      </div>
-    </motion.div>
+          This is just the beginning. Stay tuned for the next chapter—you won’t
+          want to miss it!
+        </motion.p>
+      </motion.div>
+    </section>
   );
 };

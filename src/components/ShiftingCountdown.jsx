@@ -22,7 +22,7 @@ const getNextWeekThursdayAt11AM = () => {
 const ShiftingCountdown = () => {
   return (
     <div className="bg-gradient-to-br from-black to-stone-600 p-4">
-      <div className="mx-auto flex w-full max-w-5xl items-center bg-white">
+      <div className="mx-auto flex w-full max-w-7xl items-center bg-white">
         <CountdownItem unit="Day" text="days" />
         <CountdownItem unit="Hour" text="hours" />
         <CountdownItem unit="Minute" text="minutes" />
