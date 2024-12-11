@@ -9,6 +9,11 @@ import { FiArrowRight, FiMapPin } from 'react-icons/fi';
 import { useRef } from 'react';
 import genfoxheroimage from '../assets/GenFox.png';
 import logo from '../assets/logogen.png';
+import whatsapp from '../assets/Frame 3.png'
+import call from '../assets/Frame 2.png'
+import skills from '../assets/Frame 4.png'
+import integration from '../assets/Frame 5.png'
+import ShiftingCountdown from './ShiftingCountdown';
 
 export const SmoothScrollHero = () => {
   return (
@@ -103,32 +108,32 @@ const ParallaxImages = () => {
   return (
     <div className='mx-auto max-w-5xl px-4 pt-[200px]'>
       <ParallaxImg
-        src='https://play-lh.googleusercontent.com/MWV1erZURmTaeXGj29ZLWMSo_7DB92q3IL71lDSRooqbb3qidsa4c9DJ0_jEQgOeXEQ=w416-h235-rw'
-        alt='And example of a space launch'
+        src={call}
+        alt='fox call'
         start={-200}
         end={200}
-        className='w-1/3'
+        className='w-1/3 rounded-lg' 
       />
       <ParallaxImg
-        src='https://cdn.mos.cms.futurecdn.net/Un5CRWVYRDC769ZrkZKAjn-1200-80.jpg'
-        alt='An example of a space launch'
+        src={whatsapp}
+        alt='Whatsapp chat bot'
         start={200}
         end={-250}
-        className='mx-auto w-2/3'
+        className='mx-auto w-2/3 rounded-lg'
       />
       <ParallaxImg
-        src='https://cdn.idropnews.com/wp-content/uploads/2021/03/24190921/Google-Fit-Logo.jpg'
-        alt='Orbiting satellite'
+        src={skills}
+        alt='skills and stuff'
         start={-200}
         end={200}
-        className='ml-auto w-1/3'
+        className='ml-auto w-1/3 rounded-lg'
       />
       <ParallaxImg
-        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEY23ecDss1sXWoP8GC6yuww9MGwuoFoBWcQ&s'
-        alt='Orbiting satellite'
+        src={integration}
+        alt='integration apps'
         start={0}
         end={-500}
-        className='ml-24 w-5/12'
+        className='ml-24 w-5/12 rounded-lg'
       />
     </div>
   );
@@ -160,29 +165,126 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
 };
 
 const Schedule = () => {
-  return (
-    <section
-      id='launch-schedule'
-      className='mx-auto max-w-5xl px-4 py-48 text-white'
-    >
-      <motion.h1
-        initial={{ y: 48, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ ease: 'easeInOut', duration: 0.75 }}
-        className='mb-20 text-4xl font-black uppercase text-zinc-700'
+    return (
+      <section
+        id='launch-schedule'
+        className='mx-auto max-w-5xl px-4 py-48 text-white'
       >
-        Coming soon
-      </motion.h1>
-      <ScheduleItem title='NG-21' date='Dec 9th' location='Florida' />
-      <ScheduleItem title='Starlink' date='Dec 20th' location='Texas' />
-      <ScheduleItem title='Starlink' date='Jan 13th' location='Florida' />
-      <ScheduleItem title='Turksat 6A' date='Feb 22nd' location='Florida' />
-      <ScheduleItem title='NROL-186' date='Mar 1st' location='California' />
-      <ScheduleItem title='GOES-U' date='Mar 8th' location='California' />
-      <ScheduleItem title='ASTRA 1P' date='Apr 8th' location='Texas' />
-    </section>
-  );
-};
+        <motion.h1
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ ease: 'easeOut', duration: 1.5 }} // Slower transition
+          className='mb-20 text-4xl font-black uppercase text-zinc-700'
+        >
+          Coming Soon
+        </motion.h1>
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ ease: 'easeInOut', duration: 1.5 }} // Slower transition
+        >
+          <ShiftingCountdown />
+        </motion.div>
+        <motion.div
+          className='mt-20  space-y-6 text-xl leading-8 text-zinc-400 font-mono'
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.8 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.5, // Slower stagger
+              },
+            },
+          }}
+        >
+             <motion.h1
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ ease: 'easeOut', duration: 1.5 }} // Slower transition
+          className='mb-10 text-2xl font-black uppercase text-zinc-700'
+        >
+          MEET FOX
+        </motion.h1>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 1 }} // Slower individual transition
+          >
+            The AI assistant designed to redefine how you manage your
+            life. Powered by advanced multi-agent systems and supporting
+            multi-modal interaction, Fox isn’t just smart—it’s intuitive,
+            adaptable, and built to seamlessly integrate into your daily routine.
+          </motion.p>
+          <motion.ul
+            className='list-disc list-inside'
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.5 } }, // Slower stagger
+            }}
+          >
+            <motion.li
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 1 }} // Slower individual transition
+            >
+              Tracks your finances, organizes your schedule, and syncs with your
+              fitness goals.
+            </motion.li>
+            <motion.li
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 1 }} // Slower individual transition
+            >
+              Works effortlessly through WhatsApp, turning complex tasks into
+              simple conversations.
+            </motion.li>
+            <motion.li
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 1 }} // Slower individual transition
+            >
+              Combines cutting-edge AI with a user-friendly interface, making
+              advanced technology accessible to everyone.
+            </motion.li>
+          </motion.ul>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 1 }} // Slower individual transition
+          >
+            We’re building a solution that’s as powerful as it is personal—your
+            ultimate interface to AI.
+          </motion.p>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 1.2 }} // Slightly slower for emphasis
+            className='mt-9'
+          >
+            This is just the beginning. Stay tuned for the next chapter—you won’t
+            want to miss it!
+          </motion.p>
+        </motion.div>
+      </section>
+    );
+  };
+
+  
 
 const ScheduleItem = ({ title, date, location }) => {
   return (
