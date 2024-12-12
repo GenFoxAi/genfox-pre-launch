@@ -182,7 +182,11 @@ const Schedule = () => {
         <ShiftingCountdown />
       </motion.div>
       <motion.div
+<<<<<<< HEAD
         className='mt-10 sm:mt-20 space-y-4 sm:space-y-6 text-lg sm:text-xl leading-7 sm:leading-8 text-zinc-500 font-medium'
+=======
+        className='mt-10 sm:mt-36 sm:px-[100px] space-y-4 sm:space-y-6 text-lg sm:text-xl leading-7 sm:leading-8 text-zinc-500 font-medium'
+>>>>>>> master
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true, amount: 0.8 }}
@@ -200,9 +204,15 @@ const Schedule = () => {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ ease: 'easeOut', duration: 1.5 }}
+<<<<<<< HEAD
           className='mb-5 text-3xl sm:mb-10 sm:text-4xl font-black uppercase text-zinc-700'
         >
           MEET FOX
+=======
+          className='mb-5 text-3xl sm:mb-10 sm:text-4xl font-black uppercase text-zinc-700 text-center'
+        >
+          MEET GENFOX
+>>>>>>> master
         </motion.h1>
         <motion.p
           variants={{
@@ -213,7 +223,11 @@ const Schedule = () => {
         >
           The AI assistant designed to redefine how you manage your life.
           Powered by advanced multi-agent systems and supporting multi-modal
+<<<<<<< HEAD
           interaction, Fox isn’t just smart—it’s intuitive, adaptable, and built
+=======
+          interaction, GenFox isn’t just smart—it’s intuitive, adaptable, and built
+>>>>>>> master
           to seamlessly integrate into your daily routine.
         </motion.p>
         <motion.ul
