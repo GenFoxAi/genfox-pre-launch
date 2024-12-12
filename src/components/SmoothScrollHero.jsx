@@ -114,7 +114,7 @@ const ParallaxImages = () => {
         alt='Whatsapp chat bot'
         start={200}
         end={-250}
-        className='mx-auto w-3/4 sm:w-2/3 rounded-lg'
+        className='hidden sm:block mx-auto w-3/4 sm:w-2/3 rounded-lg'
       />
       <ParallaxImg
         src={skills}
@@ -202,7 +202,7 @@ const Schedule = () => {
           transition={{ ease: 'easeOut', duration: 1.5 }}
           className='mb-5 text-3xl sm:mb-10 sm:text-4xl font-black uppercase text-zinc-700'
         >
-          MEET FOX
+          MEET GENFOX
         </motion.h1>
         <motion.p
           variants={{
@@ -213,7 +213,7 @@ const Schedule = () => {
         >
           The AI assistant designed to redefine how you manage your life.
           Powered by advanced multi-agent systems and supporting multi-modal
-          interaction, Fox isn’t just smart—it’s intuitive, adaptable, and built
+          interaction, GenFox isn’t just smart—it’s intuitive, adaptable, and built
           to seamlessly integrate into your daily routine.
         </motion.p>
         <motion.ul
