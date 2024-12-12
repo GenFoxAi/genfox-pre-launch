@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Example = () => {
@@ -186,7 +186,7 @@ const Typewrite = ({ examples }) => {
     <p className='mb-2.5 text-sm font-light uppercase'>
       <span className='inline-block size-2 bg-neutral-950' />
       <span className='ml-3'>
-        EXAMPLE:{' '}
+        {' '}
         {Array.from(examples[exampleIndex]).map((char, i) => (
           <motion.span
             key={`${exampleIndex}-${i}`}

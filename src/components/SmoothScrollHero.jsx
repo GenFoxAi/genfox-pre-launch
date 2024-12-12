@@ -114,7 +114,7 @@ const ParallaxImages = () => {
         alt='Whatsapp chat bot'
         start={200}
         end={-250}
-        className='hidden sm:block mx-auto w-3/4 sm:w-2/3 rounded-lg'
+        className='mx-auto w-3/4 sm:w-2/3 rounded-lg'
       />
       <ParallaxImg
         src={skills}
@@ -182,7 +182,7 @@ const Schedule = () => {
         <ShiftingCountdown />
       </motion.div>
       <motion.div
-        className='mt-10 sm:mt-20 space-y-4 sm:space-y-6 text-lg sm:text-xl leading-7 sm:leading-8 text-zinc-500 font-medium'
+        className='mt-10 sm:mt-36 sm:px-[100px] space-y-4 sm:space-y-6 text-lg sm:text-xl leading-7 sm:leading-8 text-zinc-500 font-medium'
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true, amount: 0.8 }}
@@ -200,7 +200,7 @@ const Schedule = () => {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ ease: 'easeOut', duration: 1.5 }}
-          className='mb-5 text-3xl sm:mb-10 sm:text-4xl font-black uppercase text-zinc-700'
+          className='mb-5 text-3xl sm:mb-10 sm:text-4xl font-black uppercase text-zinc-700 text-center'
         >
           MEET GENFOX
         </motion.h1>
