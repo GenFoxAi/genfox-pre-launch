@@ -9,7 +9,7 @@ const DAY = HOUR * 24;
 const getNextWeekThursdayAt11AM = () => {
     const now = new Date();
     const dayOfWeek = now.getDay();
-    const daysUntilNextThursday = (4 - dayOfWeek + 7) % 7 + 7; 
+    const daysUntilNextThursday = (4 - dayOfWeek + 7) % 7 || 7; 
     const nextWeekThursday = new Date(now);
     nextWeekThursday.setDate(now.getDate() + daysUntilNextThursday);
     nextWeekThursday.setHours(11, 0, 0, 0); 
